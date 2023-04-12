@@ -1,10 +1,10 @@
-<label for="basic-url">Enter artist name</label>
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="basic-addon3">https://ra.co/dj/</span>
+
+<form method="POST">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="ArtistName">Artist Name:</label>
+    <input type="text" class="form-control" id="ArtistName" name="name" aria-describedby="NameHelp" placeholder="eddiem">
+    <small id="NameHelp" class="form-text text-muted">find the correct name in the url of the artist's page</small>
   </div>
-  <input type="text" class="form-control" id="basic-url" placeholder="eddiem" aria-describedby="basic-addon3">
-  <div class="input-group-append">
-    <button class="btn btn-outline-secondary" type="button" id="button-addon2">Scrape</button>
-  </div>
-</div>
+  <button type="submit" class="btn btn-primary">Run Spider</button>
+</form>
