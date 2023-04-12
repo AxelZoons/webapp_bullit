@@ -10,25 +10,27 @@ class PostsSpider(scrapy.Spider):
     page_number = 0
     name = 'posts'
 
-    global artist
-    artist = input(f'Artist Name:')
-    start_urls = [
-        f'https://ra.co/dj/{artist}/past-events?'
-    ]
+    def __init__(self, artist=None, *args, **kwargs):
+            super(PostsSpider, self).__init__(*args, **kwargs)
+            self.artist = artist
+
+    def start_requests(self):
+        start_url = f'https://ra.co/dj/{self.artist}/past-events?'
+        yield scrapy.Request(url=start_url, callback=self.parse)
 
     def parse(self, response):
 
-        if len(response.css('li.Column-sc-18hsrnn-0.inVJeD')) == 0:
-            raise CloseSpider('No more events')
+        print(response.status)
+        print(f'Found {len(response.css("li.Column-sc-18hsrnn-0.inVJeD div h3 a::attr(href)"))} acts on page {self.page_number}')
 
         for link in response.css('li.Column-sc-18hsrnn-0.inVJeD div h3 a::attr(href)'):
             yield response.follow(link.get(), callback=self.parse_act)
 
-        next_page = f'https://ra.co/dj/{artist}/past-events?page={str(PostsSpider.page_number)}'
+        next_page = f'https://ra.co/dj/{self.artist}/past-events?page={str(self.page_number)}'
+        self.page_number += 1
 
-        PostsSpider.page_number += 1
-        print(PostsSpider.page_number)
-        yield response.follow(next_page, callback=self.parse)
+        if len(response.css('li.Column-sc-18hsrnn-0.inVJeD div h3 a::attr(href)')) == 20:
+            yield response.follow(next_page, callback=self.parse)
 
 
     def parse_act(self, response):
