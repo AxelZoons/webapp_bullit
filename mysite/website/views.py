@@ -24,4 +24,5 @@ def index(request):
         except Exception as e:
                 print('Error', str(e))
 
+
     return render(request, 'index.html')
