@@ -57,6 +57,15 @@ class PostsSpider(scrapy.Spider):
         else:
             date = datetime.strptime(date, '%d %b').strftime('%d-%m') + '-2023'
 
+        year = date.split('-')[0]
+        month = date.split('-')[1]
+        day = date.split('-')[2]
+
+
+        if year < '2015':
+            raise CloseSpider('Reached 2015')
+
+
         acts = ', '.join(acts)
 
         country_alpha2 = country.split('/')[-2].upper()
@@ -65,13 +74,15 @@ class PostsSpider(scrapy.Spider):
         except:
             country = country_alpha2
 
-        # try:
-        region = pc.convert_continent_code_to_continent_name(pc.country_alpha2_to_continent_code(country_alpha2))
-        # except:
-        #     region = 'unrecognized'
+        try:
+            region = pc.convert_continent_code_to_continent_name(pc.country_alpha2_to_continent_code(country_alpha2))
+        except KeyError:
+            region = 'unrecognized'
 
         item = {
-            'date': date,
+            'year': date,
+            'month': date,
+            'day': date,
             'Event': event,
             'promotors': promotors,
             'Location': location,

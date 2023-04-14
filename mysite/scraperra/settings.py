@@ -74,14 +74,14 @@ ITEM_PIPELINES = {
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
-# AUTOTHROTTLE_ENABLED = True
+AUTOTHROTTLE_ENABLED = True
 # The initial downloadcd delay
 # AUTOTHROTTLE_START_DELAY = 1
 # The maximum download delay to be set in case of high latencies
 # AUTOTHROTTLE_MAX_DELAY = 120
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
-# AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
+AUTOTHROTTLE_TARGET_CONCURRENCY = 8
 # Enable showing throttling stats for every response received:
 #AUTOTHROTTLE_DEBUG = False
 
@@ -96,6 +96,7 @@ ITEM_PIPELINES = {
 # Set settings whose default value is deprecated to a future-proof value
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
 TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
+# TWISTED_REACTOR = "twisted.internet.selectreactor.SelectReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
 USERAGENTS = [
@@ -119,4 +120,4 @@ USERAGENTS = [
 ]
 
 ROTATING_PROXY_LIST_PATH = 'scraperra/proxylist'
-ROTATING_PROXY_PAGE_RETRY_TIMES = 100
+ROTATING_PROXY_PAGE_RETRY_TIMES = 500
