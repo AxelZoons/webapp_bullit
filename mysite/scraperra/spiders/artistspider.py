@@ -80,9 +80,9 @@ class PostsSpider(scrapy.Spider):
             region = 'unrecognized'
 
         item = {
-            'year': date,
-            'month': date,
-            'day': date,
+            'year': year,
+            'month': month,
+            'day': day,
             'Event': event,
             'promotors': promotors,
             'Location': location,
