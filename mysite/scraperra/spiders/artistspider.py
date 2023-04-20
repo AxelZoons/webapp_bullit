@@ -57,9 +57,9 @@ class PostsSpider(scrapy.Spider):
         else:
             date = datetime.strptime(date, '%d %b').strftime('%d-%m') + '-2023'
 
-        year = date.split('-')[0]
+        day = date.split('-')[0]
         month = date.split('-')[1]
-        day = date.split('-')[2]
+        year = date.split('-')[2]
 
 
         if year < '2015':

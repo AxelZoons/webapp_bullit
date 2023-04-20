@@ -14,7 +14,9 @@ def index(request):
         print(artist)
         try:
             spider_name = 'posts'
+            print('hiiii, dit gaat nog goed')
             process = subprocess.Popen(['scrapy', 'crawl', spider_name, '-a', 'artist=%s' % artist])
+            print('hallo, ik ben zelfs hier')
             process.wait()
 
             # download the XLSX file
