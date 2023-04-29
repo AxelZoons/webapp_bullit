@@ -95,8 +95,8 @@ AUTOTHROTTLE_TARGET_CONCURRENCY = 8
 
 # Set settings whose default value is deprecated to a future-proof value
 REQUEST_FINGERPRINTER_IMPLEMENTATION = "2.7"
-TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
-# TWISTED_REACTOR = "twisted.internet.selectreactor.SelectReactor"
+# TWISTED_REACTOR = "twisted.internet.asyncioreactor.AsyncioSelectorReactor"
+TWISTED_REACTOR = "twisted.internet.selectreactor.SelectReactor"
 FEED_EXPORT_ENCODING = "utf-8"
 
 USERAGENTS = [

@@ -62,8 +62,8 @@ class PostsSpider(scrapy.Spider):
         year = date.split('-')[2]
 
 
-        if year < '2015':
-            raise CloseSpider('Reached 2015')
+        # if year < '2015':
+        #     raise CloseSpider('Reached 2015')
 
 
         acts = ', '.join(acts)
